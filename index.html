@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+    <main>
+        <h1>Rock! Paper! Scissors!</h1>
+        <section>
+            <article id="roundsBox">
+                <h2>How many rounds do you want to play?</h2>
+                <form action="">
+                    <div>
+                        <input type="radio" name="rounds" id="5" value="5" checked>
+                        <label for="five">05</label>
+                        <input type="radio" name="rounds" id="10" value="10">
+                        <label for="ten">10</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="rounds" id="15" value="15">
+                        <label for="fifteen">15</label>
+                        <input type="radio" name="rounds" id="20" value="20">
+                        <label for="twenty">20</label>
+                    </div>
+                </form>
+
+                <h1 id="roundCounter">1/5</h1>
+            </article>
+
+            <article id="counterPoints">
+                <h1>YOU</h1>
+                <h1><span id="userCounter">0</span>:<span id="compCounter">0</span></h1>
+                <h1>COM</h1>
+            </article>
+        </section>
+
+        <p id="result">Hallo</p>
+
+        <section id="icons">
+            <img value="rock" id="rock" src="assets/img/icons-05.svg" alt="">
+            <img id="paper" src="assets/img/icons-06.svg" alt="">
+            <img id="scissor" src="assets/img/icons-07.svg" alt="">
+        </section>
+
+        <section id="goodbye">
+            <h1>MAKE YOUR MOVE.</h1>
+            <p>restart</p>
+        </section>
+
+    </main>
+
+
+
+
+
+
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

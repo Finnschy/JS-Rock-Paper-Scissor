@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+:root {
+    --main-color: #168821; 
+    --main-bg-color: #374d2a;
+    --main-margin: 1rem 0 2rem 0;
+    --main-fontsize: .7rem;
+}   
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Press Start 2P', cursive;
+    background: var(--main-bg-color);
+    color: var(--main-color);
+    box-sizing: border-box;
+}
+
+
+main {
+    border: 1rem solid var(--main-color);
+    border-radius: 2rem;
+    max-width: 60%;
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 2%;
+    -webkit-border-radius: 2rem;
+    -moz-border-radius: 2rem;
+    -ms-border-radius: 2rem;
+    -o-border-radius: 2rem;
+}
+
+h1, p {
+    text-align: center;
+    letter-spacing: .2rem;
+}
+
+p {
+    margin: 2rem 0 0 0;
+}
+
+#roundsBox , #counterPoints {
+    border: .3rem solid var(--main-color);
+    border-radius: 1rem;
+    margin: var(--main-margin);
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    -ms-border-radius: 1rem;
+    -o-border-radius: 1rem;
+}
+
+#roundsBox {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+div label:nth-of-type(1) {
+    margin: 0 2rem 0 0;
+}
+
+form div:nth-of-type(2) {
+    margin: 0 0 2rem 0;
+}
+
+#roundsBox, h2 {
+    margin: var(--main-margin);
+}
+
+div, #counterPoints {
+    padding: 3%;
+}
+
+h2 {
+    font-size: var(--main-fontsize);
+    text-align: center;
+}
+
+label {
+    font-size: var(--main-fontsize);
+}
+
+#roundCounter {
+    margin: 0 0 2rem 0;
+    display: none;
+}
+
+#counterPoints {
+    display: flex;
+    width: 40%;
+    margin: 0 auto;
+    justify-content: space-between;
+}
+
+#counterPoints h1:nth-of-type(1) {
+    color: black;
+}
+
+#counterPoints h1:nth-of-type(2) , #counterPoints h1:nth-of-type(2) span{
+    display: inline-block;
+    text-decoration: dashed;
+} 
+
+#icons {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 2rem 0 2rem 0;
+}
+
+#icons img:hover {
+    opacity: .7;
+}
+
+#goodbye {
+    margin: 2rem 0 0 0;
+}
+
+#goodbye p {
+    margin: .5rem 0 0 0;
+    text-align: center;
+    
+}
