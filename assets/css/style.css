@@ -100,7 +100,7 @@ label {
 }
 
 #icons img:hover {
-    transform: scale();
+    transform: scale(1.1,1.1);
     
 }
 
@@ -112,6 +112,7 @@ label {
     border-radius: 1rem;
     transition: box-shadow 1s ease;
 }
+
 
 #goodbye {
     display: flex;
