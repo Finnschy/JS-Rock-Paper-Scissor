@@ -1,9 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 :root {
-    --main-color: #168821; 
-    --main-bg-color: #374d2a;
-    --main-margin: 1rem 0 2rem 0;
+    --button-color: #00ebc7;
+    --secondary-color: #ff5470;
+    --tertiary-color: #ffeb7c;
+    --main-color: #194988; 
+    --main-bg-color: ##fffffe;
+    --main-margin: 1rem 0 1rem 0;
     --main-fontsize: 1rem;
 }   
 
@@ -11,23 +14,17 @@
     margin: 0;
     padding: 0;
     font-family: 'Press Start 2P', cursive;
-    background: var(--main-bg-color);
-    color: var(--main-color);
+    background: var(--main-color);
+    color: #fff;
     box-sizing: border-box;
 }
 
-
 main {
-    border: .6rem solid var(--main-color);
+    border: .6rem solid #fff;
     border-radius: 2rem;
-    max-width: 60%;
-    min-height: 100vh;
-    margin: 0 auto;
+    max-width: 80%;
+    margin: 2% auto;
     padding: 2%;
-    -webkit-border-radius: 2rem;
-    -moz-border-radius: 2rem;
-    -ms-border-radius: 2rem;
-    -o-border-radius: 2rem;
 }
 
 main h1:nth-of-type(1) {
@@ -38,6 +35,7 @@ h1, p {
     text-align: center;
     letter-spacing: .2rem;
     margin: 2rem 0 0 0;
+    color: var(--button-color);
 }
 
 h2 {
@@ -45,21 +43,9 @@ h2 {
     text-align: center;
 }
 
-
-#roundsBox , #counterPoints {
-    border: .7rem solid var(--main-color);
-    border-radius: 1rem;
-    margin: var(--main-margin);
-    -webkit-border-radius: 1rem;
-    -moz-border-radius: 1rem;
-    -ms-border-radius: 1rem;
-    -o-border-radius: 1rem;
-}
-
 #roundsBox {
     display: flex;
     flex-direction: column;
-    
 }
 
 form {
@@ -96,14 +82,16 @@ label {
 
 #counterPoints {
     display: flex;
-    justify-content: space-around;
-    width: 40%;
-    margin: 0 auto;
+    justify-content: space-evenly;
+    width: 50%;
+    margin: 1% auto;
+    border: .4rem solid #fff;
+    border-radius: 1rem;
 }
 
-/* #result {
+#result {
     font-size: .8rem;
-} */
+}
 
 #icons {
     display: flex;
@@ -112,7 +100,17 @@ label {
 }
 
 #icons img:hover {
-    opacity: .7;
+    transform: scale();
+    
+}
+
+/* #icons img:active {
+    filter: drop-shadow(0px 0px 10px var(--button-color));
+} */
+
+#icons img {
+    border-radius: 1rem;
+    transition: box-shadow 1s ease;
 }
 
 #goodbye {
@@ -126,19 +124,29 @@ button {
     margin: 2rem 0 0 0;
     border: none;
     border-radius: .5rem;
-    background: var(--main-color);
-    color: var(--main-bg-color);
+    background: var(--button-color);
+    color: var(--main-color);
     width: 20%;
-    -webkit-border-radius: .5rem;
-    -moz-border-radius: .5rem;
-    -ms-border-radius: .5rem;
-    -o-border-radius: .5rem;
     align-self: center;
+    transition: background .5s ease;
 }
 
 button:focus {
     outline: none;
 }
+
 button:hover {
-    opacity: .8;
+    background: var(--tertiary-color);
+}
+
+.win {
+    box-shadow: 0px 0px 31px 0px var(--button-color);
+}
+
+.lose {
+    box-shadow: 0px 0px 31px 0px var(--secondary-color);
+}
+
+.draw {
+    box-shadow: 0px 0px 31px 0px var(--tertiary-color);
 }
