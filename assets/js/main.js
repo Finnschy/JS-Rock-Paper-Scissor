@@ -1,42 +1,4 @@
 // Schere Stein Papier
-/* 
-Was soll passieren? Schritt für Schritt.
-1. Es wird ausgewählt, wie viele Runden gespielt werden.
-Das bedeutet, dass nach 5, 10, 15 oder 20 klicks auf die Icons machen können soll.
-wenn 5, 10, 15 oder 20 mal geklickt wurde, dann erscheint die nachricht "The user wins" oder "Comp wins"
-2. Man klickt 5, 10, 15 oder 20 mal auf eines der drei Icons und es erscheint die Meldung
-    "___(user) beats ___(comp). You win! / You lose!" 
-    oder bei Gleichstand
-    "It was a draw! You both picked ___"
-    ___ steht dabei für das jeweils ausgewählte bzw random generierte Icon
-3. Außerdem wird der punkte counter bei der seite hochgezählt, die gewinnt
-4. es gibt unten einen restart button, der alles auf null setzt
-
-wenn die eingabe des users === computer randomizer dann DRAW
-
-
-muss quasi mit eventlistener click die id des icons abgreifen und das mit dem randomizer vergleichen
-die anzahl der clicks limitieren indem ich die anzahl der clicks abrufe und sage, dass er bei 5, 10, 15 oder 20 klicks abbrechen bzw die gewinnernachricht anzeigen soll
-
-ich brauche eine funktion mit addeventlistener, click für die icons 
-*/
-
-// let radios = document.querySelectorAll("[type=radio]")
-// console.log(radios);
-
-// let radioValue = document.querySelector("[type=radio]:checked").value
-// console.log(radioValue);
-
-
-// let radios = document.querySelectorAll("[type=radio]")
-// for (let i = 0; i < radios.length; i++) {
-//     console.log(radios[i].value);
-//     }
-
-/* radio buttons: when checked = true dann aktion */
-
-
-//--- Ab hier wirds ernst!!! ------------------------------------------------
 
 //--- Alle wichtigen Dinge aus dem HTML Dokument holen:
 let rock = document.getElementById("rock")
@@ -49,36 +11,61 @@ let icons = document.querySelectorAll("img")
 let userCounter = 0
 let compCounter = 0
 
-//------funktion für den zufallsgenerator
-// function randomizer() {
-//     let choices = ['rock', 'paper', 'scissors'];
-//     let randomNumber = Math.floor(Math.random() * 3);
-//     return choices[randomNumber];
-//   }
-//   console.log(randomizer());
+//--- Funktion um den Wert aus den Radio Buttons zu bekommen
+// let radioButtons = document.forms["roundChoice"].elements["rounds"]
+// console.log(radioButtons);
 
-//------obige funktion mal als arrowfunktion
+// for (let i = 0; i < radioButtons.length; i++) {
+//     radioButtons[i].onclick = function () {
+//         console.log(radioButtons.value);
+//     }
+// }
+
+function checkRounds() {
+    let five = document.getElementById("five")
+    let ten = document.getElementById("ten")
+    let fifteen = document.getElementById("fifteen")
+    let twenty = document.getElementById("twenty")
+    let rounds = 0
+    if (five.checked) {
+        rounds = 5
+    } else if (ten.checked) {
+        rounds = 10 
+    } else if (fifteen.checked) {
+        rounds = 15
+    } else if (twenty.checked) {
+        rounds = 20
+    }
+    return rounds
+}
+checkRounds()
+
+
+//------funktion für den zufallsgenerator
 const randomizer2 = () => {
     let choices = ['rock', 'paper', 'scissors'];
     let randomNumber = Math.floor(Math.random() * 3);
     return choices[randomNumber];
 }
-
 //---------------------------------------
 
+
+let clickCount = 0
 //------funktion für icon click
 rock.addEventListener("click", event => {
+    clickCount++
+    console.log(clickCount);
     let compChoice = randomizer2()
     switch (compChoice) {
         case "rock":
-            console.log("rock");
+            // console.log("rock");
             result.innerHTML = `${rock.id}(User) can't beat ${compChoice}(Comp). Draw! :|`
             rock.classList.add("draw")
             setTimeout(() => rock.classList.remove('draw'), 700)
             break
 
         case "scissors":
-            console.log("scissors");
+            // console.log("scissors");
             result.innerHTML = `${rock.id}(User) beats ${compChoice}(Comp). Win! :)`
             userCounter++
             userCount.innerHTML = userCounter
@@ -87,17 +74,21 @@ rock.addEventListener("click", event => {
             break
 
         case "paper":
-            console.log("paper");
+            // console.log("paper");
             result.innerHTML = `${rock.id}(User) gets beaten by ${compChoice}(Comp). Lose! :(`
             compCounter++
             compCount.innerHTML = compCounter
             rock.classList.add("lose")
             setTimeout(() => rock.classList.remove('lose'), 700)
             break
+            
     }
+    
 })
 
 paper.addEventListener("click", event => {
+    clickCount++
+    console.log(clickCount);
     let compChoice = randomizer2()
     switch (compChoice) {
         case "rock":
@@ -125,6 +116,8 @@ paper.addEventListener("click", event => {
 })
 
 scissor.addEventListener("click", event => {
+    clickCount++
+    console.log(clickCount);
     let compChoice = randomizer2()
     switch (compChoice) {
         case "rock":
@@ -149,5 +142,19 @@ scissor.addEventListener("click", event => {
             setTimeout(() => scissor.classList.remove('win'), 700)
             break
     }
+
+
 })
+
+
 //---------------------------------------
+
+
+// möglichkeit die addeventlisteners zusammen zu fassen? 
+/*
+idee: alle in einer function zusammenfassen, in der dann die eigentliche funktion aufgerufen wird. dann: if else
+
+if ()
+
+
+*/
