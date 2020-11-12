@@ -5,22 +5,15 @@ let rock = document.getElementById("rock")
 let paper = document.getElementById("paper")
 let scissor = document.getElementById("scissor")
 let result = document.getElementById("result")
+result.innerHTML = ""
+let roundsCounter = document.getElementById("roundsCounter")
 let userCount = document.getElementById("userCount")
 let compCount = document.getElementById("compCount")
 let icons = document.querySelectorAll("img")
 let userCounter = 0
 let compCounter = 0
 
-//--- Funktion um den Wert aus den Radio Buttons zu bekommen
-// let radioButtons = document.forms["roundChoice"].elements["rounds"]
-// console.log(radioButtons);
-
-// for (let i = 0; i < radioButtons.length; i++) {
-//     radioButtons[i].onclick = function () {
-//         console.log(radioButtons.value);
-//     }
-// }
-
+//--- Funktion um die Spielrunden zu bestimmen
 function checkRounds() {
     let five = document.getElementById("five")
     let ten = document.getElementById("ten")
@@ -41,7 +34,7 @@ function checkRounds() {
 checkRounds()
 
 
-//------funktion für den zufallsgenerator
+//--- Funktion für den Zufallsgenerator
 const randomizer2 = () => {
     let choices = ['rock', 'paper', 'scissors'];
     let randomNumber = Math.floor(Math.random() * 3);
@@ -49,12 +42,12 @@ const randomizer2 = () => {
 }
 //---------------------------------------
 
-
-let clickCount = 0
-//------funktion für icon click
+//--- Funktion für den Klick aufs Icon bzw. dem eigentlichen Spiel
 rock.addEventListener("click", event => {
+    countingRounds()
+    let rounds = checkRounds()
     clickCount++
-    console.log(clickCount);
+    roundsCounter.innerHTML = `${clickCount}/${rounds}`
     let compChoice = randomizer2()
     switch (compChoice) {
         case "rock":
@@ -81,14 +74,14 @@ rock.addEventListener("click", event => {
             rock.classList.add("lose")
             setTimeout(() => rock.classList.remove('lose'), 700)
             break
-            
     }
-    
 })
 
 paper.addEventListener("click", event => {
+    countingRounds()
+    let rounds = checkRounds()
     clickCount++
-    console.log(clickCount);
+    roundsCounter.innerHTML = `${clickCount}/${rounds}`
     let compChoice = randomizer2()
     switch (compChoice) {
         case "rock":
@@ -116,8 +109,10 @@ paper.addEventListener("click", event => {
 })
 
 scissor.addEventListener("click", event => {
+    countingRounds()
+    let rounds = checkRounds()
     clickCount++
-    console.log(clickCount);
+    roundsCounter.innerHTML = `${clickCount}/${rounds}`
     let compChoice = randomizer2()
     switch (compChoice) {
         case "rock":
@@ -142,11 +137,24 @@ scissor.addEventListener("click", event => {
             setTimeout(() => scissor.classList.remove('win'), 700)
             break
     }
-
-
 })
+result.innerHTML = ""
+//--- Funktion zum zählen der Runde, allerdings funktioniert gerade result.innerHTML nicht....
+let clickCount = 0
+function countingRounds() {
+    let rounds = checkRounds()
+    if ((clickCount + 1) === rounds) {
+        console.log("STOP");
+        result.innerText = "Hallo"
+    } 
+}
+countingRounds()
 
 
+//--- restart button
+document.getElementById("restart").addEventListener("click", () => {
+    location.reload();
+})
 //---------------------------------------
 
 
