@@ -33,17 +33,15 @@ function checkRounds() {
 }
 checkRounds()
 
-
 //--- Funktion für den Zufallsgenerator
 const randomizer2 = () => {
     let choices = ['rock', 'paper', 'scissors'];
     let randomNumber = Math.floor(Math.random() * 3);
     return choices[randomNumber];
 }
-//---------------------------------------
 
 //--- Funktion für den Klick aufs Icon bzw. dem eigentlichen Spiel
-rock.addEventListener("click", event => {
+rock.addEventListener("click", () => {
     countingRounds()
     let rounds = checkRounds()
     clickCount++
@@ -77,7 +75,7 @@ rock.addEventListener("click", event => {
     }
 })
 
-paper.addEventListener("click", event => {
+paper.addEventListener("click", () => {
     countingRounds()
     let rounds = checkRounds()
     clickCount++
@@ -108,7 +106,7 @@ paper.addEventListener("click", event => {
     }
 })
 
-scissor.addEventListener("click", event => {
+scissor.addEventListener("click", () => {
     countingRounds()
     let rounds = checkRounds()
     clickCount++
@@ -138,31 +136,20 @@ scissor.addEventListener("click", event => {
             break
     }
 })
-result.innerHTML = ""
+
 //--- Funktion zum zählen der Runde, allerdings funktioniert gerade result.innerHTML nicht....
 let clickCount = 0
 function countingRounds() {
     let rounds = checkRounds()
     if ((clickCount + 1) === rounds) {
+        result.innerText = `fuck you`
         console.log("STOP");
-        result.innerText = "Hallo"
     } 
 }
 countingRounds()
-
 
 //--- restart button
 document.getElementById("restart").addEventListener("click", () => {
     location.reload();
 })
-//---------------------------------------
 
-
-// möglichkeit die addeventlisteners zusammen zu fassen? 
-/*
-idee: alle in einer function zusammenfassen, in der dann die eigentliche funktion aufgerufen wird. dann: if else
-
-if ()
-
-
-*/
