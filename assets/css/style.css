@@ -12,21 +12,31 @@
     margin: 0;
     padding: 0;
     font-family: 'Press Start 2P', cursive;
-    background: var(--main-color);
     color: #fff;
     box-sizing: border-box;
 }
 
+body {
+    background: var(--main-color);
+}
+
 main {
-    border: .6rem solid #fff;
+    /* border: .6rem solid #fff; */
     border-radius: 2rem;
     max-width: 80%;
-    margin: 2% auto;
+    margin: 3% auto;
     padding: 2%;
+    background: linear-gradient(145deg, #17427a, #1b4e92);
+    box-shadow:  10px 10px 30px #153e74, 
+             -10px -10px 30px #1d549c;
 }
 
 main h1:nth-of-type(1) {
     margin: 0 0 1.5rem 0;
+}
+
+h1 {
+    font-size: 1.5rem;
 }
 
 h1, p {
@@ -67,7 +77,7 @@ div label:nth-of-type(1) {
 }
 
 form div:nth-of-type(2) {
-    margin: 0 0 1rem 0;
+    /* margin: 0 0 1rem 0; */
 }
 
 #roundsBox, h2 {
@@ -92,35 +102,36 @@ div, #counterPoints {
     border-radius: 1rem;
 }
 
+#move {
+    margin: 3rem 0 2.5rem 0;
+}
+
 #icons {
     display: flex;
-    justify-content: space-evenly;
-    margin: 2rem 0 2rem 0;
+    justify-content: center;
 }
+
 /* border-radius ist hier wichtig, weil der JS win/lose/draw Effekt sonst die Ecken sichtbar macht */
 #icons img {
-    border-radius: 1rem;
-    transition: box-shadow .5s ease;
+    max-width: 7rem;
+    border-radius: .8rem;
+    transition: box-shadow, opacity .5s ease;
+    margin: 0 3rem;
+    cursor: pointer;
 }
 
-#icons img:hover {
-    transform: scale(1.1,1.1);
-}
-
-#goodbye {
+#restartBox {
     display: flex;
     flex-direction: column;
-    margin: 4rem 0 0 0;
+    margin: 2rem 0 0 0;
 }
 
 button {
-    padding: 2.5%;
-    margin: 2rem 0 0 0;
+    padding: 1.5% 5%;
     border: none;
     border-radius: .5rem;
     background: var(--button-color);
     color: var(--main-color);
-    width: 20%;
     align-self: center;
     transition: background .5s ease;
 }
@@ -133,8 +144,58 @@ button:hover {
     background: var(--tertiary-color);
 }
 
+/* Cutom Radio Buttons */
+[type="radio"]:checked,
+[type="radio"]:not(:checked) {
+    position: absolute;
+    left: -9999px;
+}
+[type="radio"]:checked + label,
+[type="radio"]:not(:checked) + label
+{
+    position: relative;
+    padding-left: 28px;
+    cursor: pointer;
+    line-height: 20px;
+    display: inline-block;
+
+}
+[type="radio"]:checked + label:before,
+[type="radio"]:not(:checked) + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #fff;
+    border-radius: 100%;
+    background: #fff;
+}
+[type="radio"]:checked + label:after,
+[type="radio"]:not(:checked) + label:after {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background: var(--main-color);
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    border-radius: 100%;
+    transition: all 0.2s ease;
+}
+[type="radio"]:not(:checked) + label:after {
+    opacity: 0;
+    transform: scale(0);
+}
+[type="radio"]:checked + label:after {
+    opacity: 1;
+    transform: scale(1);
+}
+
 
 /* diese Styles werden durch JavaScript getriggered */
+/* diese werden den Icons zugewiesen */
 .win {
     box-shadow: 0px 0px 31px 0px var(--button-color);
 }
@@ -147,6 +208,7 @@ button:hover {
     box-shadow: 0px 0px 31px 0px var(--tertiary-color);
 }
 
+/* diese werden den dem Text zugewiesen */
 .resultWin {
     color: var(--button-color);
 }
@@ -158,3 +220,5 @@ button:hover {
 .resultDraw {
     color: var(--tertiary-color);
 }
+
+
