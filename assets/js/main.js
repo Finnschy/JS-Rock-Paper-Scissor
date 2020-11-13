@@ -42,7 +42,7 @@ const randomizer2 = () => {
 
 //--- Funktion für den Klick aufs Icon bzw. dem eigentlichen Spiel
 rock.addEventListener("click", () => {
-    countingRounds()
+    
     let rounds = checkRounds()
     clickCount++
     roundsCounter.innerHTML = `${clickCount}/${rounds}`
@@ -73,10 +73,11 @@ rock.addEventListener("click", () => {
             setTimeout(() => rock.classList.remove('lose'), 700)
             break
     }
+    countingRounds()
 })
 
 paper.addEventListener("click", () => {
-    countingRounds()
+    
     let rounds = checkRounds()
     clickCount++
     roundsCounter.innerHTML = `${clickCount}/${rounds}`
@@ -104,10 +105,11 @@ paper.addEventListener("click", () => {
             setTimeout(() => paper.classList.remove('draw'), 700)
             break
     }
+    countingRounds()
 })
 
 scissor.addEventListener("click", () => {
-    countingRounds()
+    
     let rounds = checkRounds()
     clickCount++
     roundsCounter.innerHTML = `${clickCount}/${rounds}`
@@ -135,18 +137,57 @@ scissor.addEventListener("click", () => {
             setTimeout(() => scissor.classList.remove('win'), 700)
             break
     }
+    countingRounds()
 })
 
 //--- Funktion zum zählen der Runde, allerdings funktioniert gerade result.innerHTML nicht....
 let clickCount = 0
 function countingRounds() {
     let rounds = checkRounds()
-    if ((clickCount + 1) === rounds) {
-        result.innerText = `fuck you`
-        console.log("STOP");
-    } 
+    if ((clickCount) === rounds && userCounter > compCounter) {
+        // console.log("STOP");
+        result.innerHTML = "YOU WIN!"
+        clickCount = 0
+        rounds = 0
+        result.classList.add("resultWin")
+            setTimeout(() => result.classList.remove('resultWin'), 700)
+        setTimeout(() => {
+            userCounter = 0
+            compCounter = 0
+            userCount.innerHTML = userCounter
+            compCount.innerHTML = compCounter
+            }, 1000);
+        roundsCounter.innerHTML = `${clickCount}/${rounds}`
+    } else if ((clickCount) === rounds && userCounter < compCounter){
+        result.innerHTML = "GAME OVER."
+        clickCount = 0
+        rounds = 0
+        result.classList.add("resultLose")
+        setTimeout(() => result.classList.remove('resultLose'), 1000)
+        setTimeout(() => {
+        userCounter = 0
+        compCounter = 0
+        userCount.innerHTML = userCounter
+        compCount.innerHTML = compCounter
+        }, 1000);
+        
+        roundsCounter.innerHTML = `${clickCount}/${rounds}`
+    } else if ((clickCount) === rounds && userCounter === compCounter) {
+        result.innerHTML = "DRAW."
+        clickCount = 0
+        rounds = 0
+        result.classList.add("resultDraw")
+        setTimeout(() => result.classList.remove('resultDraw'), 700)
+        setTimeout(() => {
+            userCounter = 0
+            compCounter = 0
+            userCount.innerHTML = userCounter
+            compCount.innerHTML = compCounter
+            }, 1000);
+        roundsCounter.innerHTML = `${clickCount}/${rounds}`
+    }
 }
-countingRounds()
+
 
 //--- restart button
 document.getElementById("restart").addEventListener("click", () => {

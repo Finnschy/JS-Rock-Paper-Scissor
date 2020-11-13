@@ -36,6 +36,11 @@ h1, p {
     color: var(--button-color);
 }
 
+p {
+    font-size: .8rem;
+    color: #fff;
+}
+
 h2 {
     font-size: 1rem;
     text-align: center;
@@ -87,10 +92,6 @@ div, #counterPoints {
     border-radius: 1rem;
 }
 
-#result {
-    font-size: .8rem;
-}
-
 #icons {
     display: flex;
     justify-content: space-evenly;
@@ -99,6 +100,7 @@ div, #counterPoints {
 /* border-radius ist hier wichtig, weil der JS win/lose/draw Effekt sonst die Ecken sichtbar macht */
 #icons img {
     border-radius: 1rem;
+    transition: box-shadow .5s ease;
 }
 
 #icons img:hover {
@@ -143,4 +145,16 @@ button:hover {
 
 .draw {
     box-shadow: 0px 0px 31px 0px var(--tertiary-color);
+}
+
+.resultWin {
+    color: var(--button-color);
+}
+
+.resultLose {
+    color: var(--secondary-color);
+}
+
+.resultDraw {
+    color: var(--tertiary-color);
 }
