@@ -1,4 +1,3 @@
-// Schere Stein Papier
 
 //--- Alle wichtigen Dinge aus dem HTML Dokument holen:
 let rock = document.getElementById("rock")
@@ -12,6 +11,7 @@ let compCount = document.getElementById("compCount")
 let icons = document.querySelectorAll("img")
 let userCounter = 0
 let compCounter = 0
+let rounds = 0;
 
 //--- Funktion um die Spielrunden zu bestimmen
 function checkRounds() {
@@ -42,33 +42,30 @@ const randomizer2 = () => {
 
 //--- Funktion für den Klick aufs Icon bzw. dem eigentlichen Spiel
 rock.addEventListener("click", () => {
-    
-    let rounds = checkRounds()
-    clickCount++
-    roundsCounter.innerHTML = `${clickCount}/${rounds}`
+
+    funcClickCount()
     let compChoice = randomizer2()
     switch (compChoice) {
         case "rock":
-            // console.log("rock");
             result.innerHTML = `${rock.id}(User) can't beat ${compChoice}(Comp). Draw! :|`
             rock.classList.add("draw")
             setTimeout(() => rock.classList.remove('draw'), 700)
             break
 
         case "scissors":
-            // console.log("scissors");
             result.innerHTML = `${rock.id}(User) beats ${compChoice}(Comp). Win! :)`
-            userCounter++
-            userCount.innerHTML = userCounter
+
+            // in funcUserCount() wird der userCount hochgesetzt und dann ins innerHTML geschrieben
+            funcUserCount()
             rock.classList.add("win")
             setTimeout(() => rock.classList.remove('win'), 700)
             break
 
         case "paper":
-            // console.log("paper");
             result.innerHTML = `${rock.id}(User) gets beaten by ${compChoice}(Comp). Lose! :(`
-            compCounter++
-            compCount.innerHTML = compCounter
+
+            // in funcCompCount() wird der compCount hochgesetzt und dann ins innerHTML geschrieben
+            funcCompCount()
             rock.classList.add("lose")
             setTimeout(() => rock.classList.remove('lose'), 700)
             break
@@ -78,23 +75,23 @@ rock.addEventListener("click", () => {
 
 paper.addEventListener("click", () => {
     
-    let rounds = checkRounds()
-    clickCount++
-    roundsCounter.innerHTML = `${clickCount}/${rounds}`
+    funcClickCount()
     let compChoice = randomizer2()
     switch (compChoice) {
         case "rock":
             result.innerHTML = `${paper.id}(User) beats ${compChoice}(Comp). Win! :)`
-            userCounter++
-            userCount.innerHTML = userCounter
+
+            // in funcUserCount() wird der userCount hochgesetzt und dann ins innerHTML geschrieben
+            funcUserCount()
             paper.classList.add("win")
             setTimeout(() => paper.classList.remove('win'), 700)
             break
 
         case "scissors":
             result.innerHTML = `${paper.id}(User) gets beaten by ${compChoice}(Comp). Lose! :(`
-            compCounter++
-            compCount.innerHTML = compCounter
+
+            // in funcCompCount() wird der compCount hochgesetzt und dann ins innerHTML geschrieben
+            funcCompCount()
             paper.classList.add("lose")
             setTimeout(() => paper.classList.remove('lose'), 700)
             break
@@ -110,15 +107,15 @@ paper.addEventListener("click", () => {
 
 scissor.addEventListener("click", () => {
     
-    let rounds = checkRounds()
-    clickCount++
-    roundsCounter.innerHTML = `${clickCount}/${rounds}`
+    // let rounds = checkRounds()
+    funcClickCount()
     let compChoice = randomizer2()
     switch (compChoice) {
         case "rock":
             result.innerHTML = `${scissor.id}(User) gets beaten by ${compChoice}(Comp). Lose! :(`
-            compCounter++
-            compCount.innerHTML = compCounter
+
+            // in funcCompCount() wird der compCount hochgesetzt und dann ins innerHTML geschrieben
+            funcCompCount()
             scissor.classList.add("lose")
             setTimeout(() => scissor.classList.remove('lose'), 700)
             break
@@ -131,8 +128,9 @@ scissor.addEventListener("click", () => {
 
         case "paper":
             result.innerHTML = `${scissor.id}(User) beats ${compChoice}(Comp). Win! :)`
-            userCounter++
-            userCount.innerHTML = userCounter
+
+            // in funcUserCount() wird der userCount hochgesetzt und dann ins innerHTML geschrieben
+            funcUserCount()
             scissor.classList.add("win")
             setTimeout(() => scissor.classList.remove('win'), 700)
             break
@@ -143,48 +141,32 @@ scissor.addEventListener("click", () => {
 //--- Funktion zum zählen der Runde, allerdings funktioniert gerade result.innerHTML nicht....
 let clickCount = 0
 function countingRounds() {
+
     let rounds = checkRounds()
+
     if ((clickCount) === rounds && userCounter > compCounter) {
-        // console.log("STOP");
         result.innerHTML = "YOU WIN!"
-        clickCount = 0
-        rounds = 0
         result.classList.add("resultWin")
-            setTimeout(() => result.classList.remove('resultWin'), 700)
-        setTimeout(() => {
-            userCounter = 0
-            compCounter = 0
-            userCount.innerHTML = userCounter
-            compCount.innerHTML = compCounter
-            }, 1000);
-        roundsCounter.innerHTML = `${clickCount}/${rounds}`
+        setTimeout(() => result.classList.remove('resultWin'), 700)
+
+        // in setTime() werden alle Felder wieder auf 0 gesetzt nach 1000ms
+        setTime()
+
     } else if ((clickCount) === rounds && userCounter < compCounter){
         result.innerHTML = "GAME OVER."
-        clickCount = 0
-        rounds = 0
         result.classList.add("resultLose")
         setTimeout(() => result.classList.remove('resultLose'), 1000)
-        setTimeout(() => {
-        userCounter = 0
-        compCounter = 0
-        userCount.innerHTML = userCounter
-        compCount.innerHTML = compCounter
-        }, 1000);
-        
-        roundsCounter.innerHTML = `${clickCount}/${rounds}`
+
+        // in setTime() werden alle Felder wieder auf 0 gesetzt nach 1000ms
+        setTime()
+
     } else if ((clickCount) === rounds && userCounter === compCounter) {
         result.innerHTML = "DRAW."
-        clickCount = 0
-        rounds = 0
         result.classList.add("resultDraw")
         setTimeout(() => result.classList.remove('resultDraw'), 700)
-        setTimeout(() => {
-            userCounter = 0
-            compCounter = 0
-            userCount.innerHTML = userCounter
-            compCount.innerHTML = compCounter
-            }, 1000);
-        roundsCounter.innerHTML = `${clickCount}/${rounds}`
+
+        // in setTime() werden alle Felder wieder auf 0 gesetzt nach 1000ms
+        setTime();
     }
 }
 
@@ -194,3 +176,31 @@ document.getElementById("restart").addEventListener("click", () => {
     location.reload();
 })
 
+setTime = () => {
+    setTimeout(() => {
+        clickCount = 0
+        rounds = 0
+        userCounter = 0
+        compCounter = 0
+        userCount.innerHTML = userCounter
+        compCount.innerHTML = compCounter
+        roundsCounter.innerHTML = `${clickCount}/${rounds}`
+        result.innerHTML = "Click an icon to start the game."
+        }, 1000);
+}
+
+funcUserCount = () => {
+    userCounter++
+    userCount.innerHTML = userCounter
+}
+
+funcCompCount = () => {
+    compCounter++
+    compCount.innerHTML = compCounter
+}
+
+funcClickCount = () => {
+    let rounds = checkRounds()
+    clickCount++
+    roundsCounter.innerHTML = `${clickCount}/${rounds}`
+}
